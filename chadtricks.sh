@@ -45,17 +45,8 @@ update()
     echo "updating prefix" && wineboot -u 2>/dev/null
 }
 
-check()
-{   
-    echo "$HASH"
-    CHECK=$(sha256sum "vcrun2015.tar.zst" | awk '{print $1}')
-    [ "$HASH" = "$CHECK" ] && echo "everything is ok" && exit || echo "everythign is fucked" && exit
-}
-
 vcrun2015()
 {   
-    export HASH="0846576eff00ed828d6fdaba121c2c3b83bd45807cc96b2e0a79c19c9f95ac50"
-    check
     update
     echo "downloading vcrun2015"
     download "https://github.com/john-cena-141/chadtricks/raw/main/vcrun2015.tar.zst"
