@@ -17,17 +17,7 @@ export WINEDLLOVERRIDES="mscoree=d;mshtml=d"
 
 # Download path (default)
 DL_PATH="$PWD"
-
-while getopts g: flag
-do
-    case "${flag}" in
-        g) DL_PATH="$PWD/game";;
-        *) exit 1;;
-    esac
-done
-
 echo "download path is $DL_PATH"
-
 
 download()
 {
