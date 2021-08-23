@@ -2,7 +2,7 @@
 
 #TODO
 # add check if archive is already downloaded?
-# conflict check?
+# new structure for archives
 
 ##########
 
@@ -14,36 +14,44 @@
 
 # Wine: don't complain about mono/gecho
 export WINEDLLOVERRIDES="mscoree=d;mshtml=d"
+export WINEDEBUG="-all"
 
 # Download path (default)
-DL_PATH="$PWD"
-echo "download path is $DL_PATH"
+echo "download path is $PWD"
 
 download()
 {
-    command -v aria2c >/dev/null 2>&1 && aria2c "$1" -d "$DL_PATH" && return
-    command -v wget >/dev/null 2>&1 && wget -N "$1" -P "$DL_PATH" && return
-    command -v curl >/dev/null 2>&1 && cd "$DL_PATH" && curl -LO "$1" && cd "$OLDPWD" && return
+    command -v aria2c >/dev/null 2>&1 && aria2c "$1" && return
+    command -v wget >/dev/null 2>&1 && wget -N "$1" && return
+    command -v curl >/dev/null 2>&1 && curl -LO "$1" && return
 }
 
 import_dlls()
 {
-    echo "importing dlls" && wine regedit "$1" 2>/dev/null && wineserver -w
+    echo "importing dlls" && wine regedit "$1" && wine64 regedit "$1" && wineserver -w
 }
 
 extract()
 {
-    echo "extracting $1" && cd "$DL_PATH" && tar -xf "$1" && cd "$OLDPWD" || exit
+    echo "extracting $1" && tar -xf "$1"
 }
 
 update()
 {
-    echo "updating prefix" && wineboot -u 2>/dev/null && wineserver -w
+    echo "updating prefix" && wineboot -u && wineserver -w
 }
 
 check()
 {   
-    [ "$(sha256sum "$DL_PATH/$1" | awk '{print $1}')" = "$2" ] && return 0 || return 1
+    [ "$(sha256sum "$PWD/$1" | awk '{print $1}')" = "$2" ] && return 0 || return 1
+}
+
+register_dll()
+{
+    for i in "$@"
+    do
+    wine regsvr32 "$i" && wine64 regsvr32 "$i" 
+    done
 }
 
 vcrun2015()
@@ -54,8 +62,8 @@ vcrun2015()
     check vcrun2015.tar.zst 2b0bc92d4bd2a48f7e4d0a958d663baa5f3165eab95521e71f812b9030b03eb6
     [ $? -eq 1 ] && echo "archive is corrupted (invalid hash), skipping" && return
     extract "vcrun2015.tar.zst"
-    cp -r "$DL_PATH"/vcrun2015/drive_c/windows/* "$WINEPREFIX"/drive_c/windows/
-    import_dlls "$DL_PATH"/vcrun2015/vcrun2015.reg
+    cp -r "$PWD"/vcrun2015/drive_c/windows/* "$WINEPREFIX/drive_c/windows/"
+    import_dlls "$PWD"/vcrun2015/vcrun2015.reg
     echo "vcrun2015" >> "$WINEPREFIX/chadtricks.log" 
     echo "vcrun2015 installed"
 }
@@ -68,8 +76,8 @@ vcrun2017()
     check vcrun2017.tar.zst 2bcf9852b02f6e707905f0be0a96542225814a3fc19b3b9dcf066f4dd2789773
     [ $? -eq 1 ] && echo "archive is corrupted (invalid hash), skipping" && return
     extract vcrun2017.tar.zst
-    cp -r "$DL_PATH"/vcrun2017/drive_c/windows/* "$WINEPREFIX"/drive_c/windows/
-    import_dlls "$DL_PATH"/vcrun2017/vcrun2017.reg
+    cp -r "$PWD"/vcrun2017/drive_c/windows/* "$WINEPREFIX/drive_c/windows/"
+    import_dlls "$PWD"/vcrun2017/vcrun2017.reg
     echo "vcrun2017" >> "$WINEPREFIX/chadtricks.log" 
     echo "vcrun2017 installed"
 }
@@ -80,10 +88,25 @@ vcrun2019()
     #echo "downloading vcrun2019"
     #download https://github.com/john-cena-141/chadtricks/raw/main/vcrun2019.tar.zst
     #extract vcrun2019.tar.zst
-    #cp -r "$PWD"/vcrun2019/drive_c/windows/* "$WINEPREFIX"/drive_c/windows/*
+    #cp -r "$PWD"/vcrun2019/drive_c/windows/* "$WINEPREFIX/drive_c/windows/""
     #import_dlls "$PWD"/vcrun2019/vcrun2019.reg
     #echo "vcrun2019" >> "$WINEPREFIX/chadtricks.log" 
     echo "vcrun2019 installed"
+}
+
+mf()
+{
+    update
+    echo "downloading mf"
+    download "https://github.com/john-cena-141/chadtricks/raw/main/mf.tar.zst"
+    check mf.tar.zst e61b9a8e062d585adb2dd840df3e65b099dd19085bcf0058d5d50318ddf9ce80
+    [ $? -eq 1 ] && echo "archive is corrupted (invalid hash), skipping" && return
+    extract "mf.tar.zst"
+    cp -r "$PWD"/mf/drive_c/windows/* "$WINEPREFIX/drive_c/windows/"
+    import_dlls "$PWD"/mf/mf.reg
+    register_dll colorcnv.dll msmpeg2adec.dll msmpeg2vdec.dll
+    echo "mf" >> "$WINEPREFIX/chadtricks.log" 
+    echo "mf installed"
 }
 
 template()
@@ -94,15 +117,16 @@ template()
     #check template.tar.zst 2bcf9852b02f6e707905f0be0a96542225814a3fc19b3b9dcf066f4dd2781337
     #[ $? -eq 1 ] && echo "archive is corrupted (invalid hash), skipping" && return
     #extract template.tar.zst
-    #cp -r "$PWD"/template/drive_c/windows/* "$WINEPREFIX"/drive_c/windows/*
+    #cp -r "$PWD"/template/drive_c/windows/* "$WINEPREFIX/drive_c/windows/"
     #import_dlls "$PWD"/template/template.reg
     #echo "template" >> "$WINEPREFIX/chadtricks.log" 
-    #echo "template installed"
+    echo "template installed"
 }
+
 
 # Running chadtricks
 [ $# = 0 ] && echo "add chadtricks" && exit 1
 for i in "$@"
 do
-   "$i" 
+   "$i"
 done
