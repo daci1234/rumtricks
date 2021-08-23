@@ -1,5 +1,11 @@
 #!/bin/bash
 
+#TODO
+# add check if archive is already downloaded?
+# new structure for archives
+
+##########
+
 # Forbid root rights
 [ "$EUID" = "0" ] && echo -e "\e[91mDon't use sudo or root user to execute chadtricks!\e[0m" && exit
 
@@ -32,7 +38,7 @@ download()
 
 import_dlls()
 {
-    echo "importing dlls" && wine regedit "$1" 2>/dev/null
+    echo "importing dlls" && wine regedit "$1" 2>/dev/null && wineserver -w
 }
 
 extract()
@@ -42,7 +48,12 @@ extract()
 
 update()
 {
-    echo "updating prefix" && wineboot -u 2>/dev/null
+    echo "updating prefix" && wineboot -u 2>/dev/null && wineserver -w
+}
+
+check()
+{   
+    [ "$(sha256sum "$DL_PATH/$1" | awk '{print $1}')" = "$2" ] && return 0 || return 1
 }
 
 vcrun2015()
@@ -50,6 +61,8 @@ vcrun2015()
     update
     echo "downloading vcrun2015"
     download "https://github.com/john-cena-141/chadtricks/raw/main/vcrun2015.tar.zst"
+    check vcrun2015.tar.zst 0846576eff00ed828d6fdaba121c2c3b83bd45807cc96b2e0a79c19c9f95ac50
+    [ $? -eq 1 ] && echo "archive is corrupted (invalid hash), skipping" && return
     extract "vcrun2015.tar.zst"
     cp -r "$DL_PATH"/vcrun2015/drive_c/windows/* "$WINEPREFIX"/drive_c/windows/
     import_dlls "$DL_PATH"/vcrun2015/vcrun2015.reg
@@ -62,6 +75,8 @@ vcrun2017()
     update
     echo "downloading vcrun2017"
     download https://github.com/john-cena-141/chadtricks/raw/main/vcrun2017.tar.zst
+    check vcrun2017.tar.zst 2bcf9852b02f6e707905f0be0a96542225814a3fc19b3b9dcf066f4dd2789773
+    [ $? -eq 1 ] && echo "archive is corrupted (invalid hash), skipping" && return
     extract vcrun2017.tar.zst
     cp -r "$DL_PATH"/vcrun2017/drive_c/windows/* "$WINEPREFIX"/drive_c/windows/
     import_dlls "$DL_PATH"/vcrun2017/vcrun2017.reg
