@@ -86,6 +86,20 @@ vcrun2019()
     echo "vcrun2019 installed"
 }
 
+template()
+{
+    #update
+    #echo "downloading vcrun2019"
+    #download https://github.com/john-cena-141/chadtricks/raw/main/template.tar.zst
+    #check template.tar.zst 2bcf9852b02f6e707905f0be0a96542225814a3fc19b3b9dcf066f4dd2781337
+    #[ $? -eq 1 ] && echo "archive is corrupted (invalid hash), skipping" && return
+    #extract template.tar.zst
+    #cp -r "$PWD"/template/drive_c/windows/* "$WINEPREFIX"/drive_c/windows/*
+    #import_dlls "$PWD"/template/template.reg
+    #echo "template" >> "$WINEPREFIX/chadtricks.log" 
+    #echo "template installed"
+}
+
 # Running chadtricks
 [ $# = 0 ] && echo "add chadtricks" && exit 1
 for i in "$@"
