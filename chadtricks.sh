@@ -61,7 +61,7 @@ vcrun2015()
     update
     echo "downloading vcrun2015"
     download "https://github.com/john-cena-141/chadtricks/raw/main/vcrun2015.tar.zst"
-    check vcrun2015.tar.zst 0846576eff00ed828d6fdaba121c2c3b83bd45807cc96b2e0a79c19c9f95ac50
+    check vcrun2015.tar.zst 2b0bc92d4bd2a48f7e4d0a958d663baa5f3165eab95521e71f812b9030b03eb6
     [ $? -eq 1 ] && echo "archive is corrupted (invalid hash), skipping" && return
     extract "vcrun2015.tar.zst"
     cp -r "$DL_PATH"/vcrun2015/drive_c/windows/* "$WINEPREFIX"/drive_c/windows/
