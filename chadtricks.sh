@@ -2,7 +2,7 @@
 
 #TODO
 # add check if archive is already downloaded?
-# new structure for archives
+# conflict check?
 
 ##########
 
@@ -90,5 +90,5 @@ vcrun2019()
 [ $# = 0 ] && echo "add chadtricks" && exit 1
 for i in "$@"
 do
-   "$i" 2>/dev/null
+   "$i" 
 done
