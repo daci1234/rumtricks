@@ -42,7 +42,7 @@ update()
 }
 
 check()
-{   
+{
     [ "$(sha256sum "$PWD/$1" | awk '{print $1}')" = "$2" ] && return 0 || return 1
 }
 
@@ -50,12 +50,12 @@ register_dll()
 {
     for i in "$@"
     do
-    wine regsvr32 "$i" && wine64 regsvr32 "$i" 
+    wine regsvr32 "$i" && wine64 regsvr32 "$i"
     done
 }
 
 vcrun2015()
-{   
+{
     update
     echo "downloading vcrun2015"
     download "https://github.com/john-cena-141/chadtricks/raw/main/vcrun2015.tar.zst"
@@ -64,7 +64,7 @@ vcrun2015()
     extract "vcrun2015.tar.zst"
     cp -r "$PWD"/vcrun2015/drive_c/windows/* "$WINEPREFIX/drive_c/windows/"
     import_dlls "$PWD"/vcrun2015/vcrun2015.reg
-    echo "vcrun2015" >> "$WINEPREFIX/chadtricks.log" 
+    echo "vcrun2015" >> "$WINEPREFIX/chadtricks.log"
     echo "vcrun2015 installed"
 }
 
@@ -78,7 +78,7 @@ vcrun2017()
     extract vcrun2017.tar.zst
     cp -r "$PWD"/vcrun2017/drive_c/windows/* "$WINEPREFIX/drive_c/windows/"
     import_dlls "$PWD"/vcrun2017/vcrun2017.reg
-    echo "vcrun2017" >> "$WINEPREFIX/chadtricks.log" 
+    echo "vcrun2017" >> "$WINEPREFIX/chadtricks.log"
     echo "vcrun2017 installed"
 }
 
@@ -91,7 +91,7 @@ vcrun2019()
     extract vcrun2019.tar.zst
     cp -r "$PWD"/vcrun2019/drive_c/windows/* "$WINEPREFIX/drive_c/windows/"
     import_dlls "$PWD"/vcrun2019/vcrun2019.reg
-    echo "vcrun2019" >> "$WINEPREFIX/chadtricks.log" 
+    echo "vcrun2019" >> "$WINEPREFIX/chadtricks.log"
     echo "vcrun2019 installed"
 }
 
@@ -106,7 +106,7 @@ mf()
     cp -r "$PWD"/mf/drive_c/windows/* "$WINEPREFIX/drive_c/windows/"
     import_dlls "$PWD"/mf/mf.reg
     register_dll colorcnv.dll msmpeg2adec.dll msmpeg2vdec.dll
-    echo "mf" >> "$WINEPREFIX/chadtricks.log" 
+    echo "mf" >> "$WINEPREFIX/chadtricks.log"
     echo "mf installed"
 }
 
@@ -120,7 +120,7 @@ template()
     #extract template.tar.zst
     #cp -r "$PWD"/template/drive_c/windows/* "$WINEPREFIX/drive_c/windows/"
     #import_dlls "$PWD"/template/template.reg
-    #echo "template" >> "$WINEPREFIX/chadtricks.log" 
+    #echo "template" >> "$WINEPREFIX/chadtricks.log"
     echo "template installed"
 }
 
