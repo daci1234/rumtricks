@@ -68,6 +68,20 @@ vcrun2010()
     echo "vcrun2010 installed"
 }
 
+vcrun2012()
+{
+    update
+    echo "downloading vcrun2012"
+    download https://github.com/john-cena-141/chadtricks/raw/main/vcrun2012.tar.zst
+    check vcrun2012.tar.zst ba5a5110f96f12ac49eecd4896a11baaabfdf6efad2d029a069d9680a30a2b0b
+    [ $? -eq 1 ] && echo "archive is corrupted (invalid hash), skipping" && return
+    extract vcrun2012.tar.zst
+    cp -r "$PWD"/vcrun2012/files/drive_c/windows/* "$WINEPREFIX/drive_c/windows/"
+    import_dlls "$PWD"/vcrun2012/vcrun2012.reg
+    echo "vcrun2012" >> "$WINEPREFIX/chadtricks.log"
+    echo "vcrun2012 installed"
+}
+
 vcrun2015()
 {
     update
