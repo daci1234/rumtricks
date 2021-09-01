@@ -62,7 +62,7 @@ vcrun2015()
     check vcrun2015.tar.zst 2b0bc92d4bd2a48f7e4d0a958d663baa5f3165eab95521e71f812b9030b03eb6
     [ $? -eq 1 ] && echo "archive is corrupted (invalid hash), skipping" && return
     extract "vcrun2015.tar.zst"
-    cp -r "$PWD"/vcrun2015/drive_c/windows/* "$WINEPREFIX/drive_c/windows/"
+    cp -r "$PWD"/vcrun2015/files/drive_c/windows/* "$WINEPREFIX/drive_c/windows/"
     import_dlls "$PWD"/vcrun2015/vcrun2015.reg
     echo "vcrun2015" >> "$WINEPREFIX/chadtricks.log"
     echo "vcrun2015 installed"
