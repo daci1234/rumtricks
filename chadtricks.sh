@@ -54,6 +54,48 @@ register_dll()
     done
 }
 
+vcrun2010()
+{
+    update
+    echo "downloading vcrun2010"
+    download https://github.com/john-cena-141/chadtricks/raw/vcrun/vcrun2010.tar.zst
+    check vcrun2010.tar.zst f4ca1c716fd4f33426d0074c2c21561893a61d253a45a41dff53f6c638acd151
+    [ $? -eq 1 ] && echo "archive is corrupted (invalid hash), skipping" && return
+    extract vcrun2010.tar.zst
+    cp -r "$PWD"/vcrun2010/files/drive_c/windows/* "$WINEPREFIX/drive_c/windows/"
+    import_dlls "$PWD"/vcrun2010/vcrun2010.reg
+    echo "vcrun2010" >> "$WINEPREFIX/chadtricks.log"
+    echo "vcrun2010 installed"
+}
+
+vcrun2012()
+{
+    update
+    echo "downloading vcrun2012"
+    download https://github.com/john-cena-141/chadtricks/raw/vcrun/vcrun2012.tar.zst
+    check vcrun2012.tar.zst ba5a5110f96f12ac49eecd4896a11baaabfdf6efad2d029a069d9680a30a2b0b
+    [ $? -eq 1 ] && echo "archive is corrupted (invalid hash), skipping" && return
+    extract vcrun2012.tar.zst
+    cp -r "$PWD"/vcrun2012/files/drive_c/windows/* "$WINEPREFIX/drive_c/windows/"
+    import_dlls "$PWD"/vcrun2012/vcrun2012.reg
+    echo "vcrun2012" >> "$WINEPREFIX/chadtricks.log"
+    echo "vcrun2012 installed"
+}
+
+vcrun2013()
+{
+    update
+    echo "downloading vcrun2013"
+    download https://github.com/john-cena-141/chadtricks/raw/vcrun/vcrun2013.tar.zst
+    check vcrun2013.tar.zst 3669fd43ae62a31c4a608b011af7ba97b2f25e25915f7e66d441b46e9d55a39c
+    [ $? -eq 1 ] && echo "archive is corrupted (invalid hash), skipping" && return
+    extract vcrun2013.tar.zst
+    cp -r "$PWD"/vcrun2013/files/drive_c/windows/* "$WINEPREFIX/drive_c/windows/"
+    import_dlls "$PWD"/vcrun2013/vcrun2013.reg
+    echo "vcrun2013" >> "$WINEPREFIX/chadtricks.log"
+    echo "vcrun2013 installed"
+}
+
 vcrun2015()
 {
     update
