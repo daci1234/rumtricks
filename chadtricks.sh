@@ -64,6 +64,7 @@ vcrun2010()
     cp -r "$PWD"/vcrun2010/files/drive_c/windows/* "$WINEPREFIX/drive_c/windows/"
     import_dlls "$PWD"/vcrun2010/vcrun2010.reg
     echo "vcrun2010" >> "$WINEPREFIX/chadtricks.log"
+    rm -rf "$PWD"/vcrun2010
     echo "vcrun2010 installed"
 }
 
@@ -78,6 +79,7 @@ vcrun2012()
     cp -r "$PWD"/vcrun2012/files/drive_c/windows/* "$WINEPREFIX/drive_c/windows/"
     import_dlls "$PWD"/vcrun2012/vcrun2012.reg
     echo "vcrun2012" >> "$WINEPREFIX/chadtricks.log"
+    rm -rf "$PWD"/vcrun2012
     echo "vcrun2012 installed"
 }
 
@@ -92,6 +94,7 @@ vcrun2013()
     cp -r "$PWD"/vcrun2013/files/drive_c/windows/* "$WINEPREFIX/drive_c/windows/"
     import_dlls "$PWD"/vcrun2013/vcrun2013.reg
     echo "vcrun2013" >> "$WINEPREFIX/chadtricks.log"
+    rm -rf "$PWD"/vcrun2013
     echo "vcrun2013 installed"
 }
 
@@ -106,6 +109,7 @@ vcrun2015()
     cp -r "$PWD"/vcrun2015/files/drive_c/windows/* "$WINEPREFIX/drive_c/windows/"
     import_dlls "$PWD"/vcrun2015/vcrun2015.reg
     echo "vcrun2015" >> "$WINEPREFIX/chadtricks.log"
+    rm -rf "$PWD"/vcrun2015
     echo "vcrun2015 installed"
 }
 
@@ -120,6 +124,7 @@ vcrun2017()
     cp -r "$PWD"/vcrun2017/drive_c/windows/* "$WINEPREFIX/drive_c/windows/"
     import_dlls "$PWD"/vcrun2017/vcrun2017.reg
     echo "vcrun2017" >> "$WINEPREFIX/chadtricks.log"
+    rm -rf "$PWD"/vcrun2017
     echo "vcrun2017 installed"
 }
 
@@ -134,6 +139,7 @@ vcrun2019()
     cp -r "$PWD"/vcrun2019/drive_c/windows/* "$WINEPREFIX/drive_c/windows/"
     import_dlls "$PWD"/vcrun2019/vcrun2019.reg
     echo "vcrun2019" >> "$WINEPREFIX/chadtricks.log"
+    rm -rf "$PWD"/vcrun2019
     echo "vcrun2019 installed"
 }
 
@@ -149,6 +155,7 @@ mf()
     import_dlls "$PWD"/mf/mf.reg
     register_dll colorcnv.dll msmpeg2adec.dll msmpeg2vdec.dll
     echo "mf" >> "$WINEPREFIX/chadtricks.log"
+    rm -rf "$PWD"/mf
     echo "mf installed"
 }
 
@@ -163,6 +170,7 @@ template()
     #cp -r "$PWD"/template/drive_c/windows/* "$WINEPREFIX/drive_c/windows/"
     #import_dlls "$PWD"/template/template.reg
     #echo "template" >> "$WINEPREFIX/chadtricks.log"
+    #rm -rf "$PWD"/template
     echo "template installed"
 }
 
