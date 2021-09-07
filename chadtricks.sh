@@ -155,7 +155,7 @@ mf()
 template()
 {
     #update
-    #echo "downloading vcrun2019"
+    #echo "downloading template"
     #download https://github.com/john-cena-141/chadtricks/raw/main/template.tar.zst
     #check template.tar.zst 2bcf9852b02f6e707905f0be0a96542225814a3fc19b3b9dcf066f4dd2781337
     #[ $? -eq 1 ] && echo "archive is corrupted (invalid hash), skipping" && return
