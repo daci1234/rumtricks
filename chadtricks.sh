@@ -60,7 +60,7 @@ vcrun2010()
     echo "downloading vcrun2010"
     download https://github.com/john-cena-141/chadtricks/raw/main/vcrun2010.tar.zst
     check vcrun2010.tar.zst f4ca1c716fd4f33426d0074c2c21561893a61d253a45a41dff53f6c638acd151
-    [ $? -eq 1 ] && echo "archive is corrupted (invalid hash), skipping" && return
+    [ $? -eq 1 ] && echo "archive is corrupted (invalid hash), skipping" && rm vcrun2010.tar.zst && return
     extract vcrun2010.tar.zst
     cp -r "$PWD"/vcrun2010/files/drive_c/windows/* "$WINEPREFIX/drive_c/windows/"
     import_dlls "$PWD"/vcrun2010/vcrun2010.reg
@@ -74,7 +74,7 @@ vcrun2012()
     echo "downloading vcrun2012"
     download https://github.com/john-cena-141/chadtricks/raw/main/vcrun2012.tar.zst
     check vcrun2012.tar.zst ba5a5110f96f12ac49eecd4896a11baaabfdf6efad2d029a069d9680a30a2b0b
-    [ $? -eq 1 ] && echo "archive is corrupted (invalid hash), skipping" && return
+    [ $? -eq 1 ] && echo "archive is corrupted (invalid hash), skipping" && rm vcrun2012.tar.zst && return
     extract vcrun2012.tar.zst
     cp -r "$PWD"/vcrun2012/files/drive_c/windows/* "$WINEPREFIX/drive_c/windows/"
     import_dlls "$PWD"/vcrun2012/vcrun2012.reg
@@ -88,7 +88,7 @@ vcrun2013()
     echo "downloading vcrun2013"
     download https://github.com/john-cena-141/chadtricks/raw/main/vcrun2013.tar.zst
     check vcrun2013.tar.zst 3669fd43ae62a31c4a608b011af7ba97b2f25e25915f7e66d441b46e9d55a39c
-    [ $? -eq 1 ] && echo "archive is corrupted (invalid hash), skipping" && return
+    [ $? -eq 1 ] && echo "archive is corrupted (invalid hash), skipping" && rm vcrun2013.tar.zst && return
     extract vcrun2013.tar.zst
     cp -r "$PWD"/vcrun2013/files/drive_c/windows/* "$WINEPREFIX/drive_c/windows/"
     import_dlls "$PWD"/vcrun2013/vcrun2013.reg
@@ -102,7 +102,7 @@ vcrun2015()
     echo "downloading vcrun2015"
     download "https://github.com/john-cena-141/chadtricks/raw/main/vcrun2015.tar.zst"
     check vcrun2015.tar.zst 2b0bc92d4bd2a48f7e4d0a958d663baa5f3165eab95521e71f812b9030b03eb6
-    [ $? -eq 1 ] && echo "archive is corrupted (invalid hash), skipping" && return
+    [ $? -eq 1 ] && echo "archive is corrupted (invalid hash), skipping" && rm vcrun2015.tar.zst && return
     extract "vcrun2015.tar.zst"
     cp -r "$PWD"/vcrun2015/files/drive_c/windows/* "$WINEPREFIX/drive_c/windows/"
     import_dlls "$PWD"/vcrun2015/vcrun2015.reg
@@ -116,7 +116,7 @@ vcrun2017()
     echo "downloading vcrun2017"
     download https://github.com/john-cena-141/chadtricks/raw/main/vcrun2017.tar.zst
     check vcrun2017.tar.zst 2bcf9852b02f6e707905f0be0a96542225814a3fc19b3b9dcf066f4dd2789773
-    [ $? -eq 1 ] && echo "archive is corrupted (invalid hash), skipping" && return
+    [ $? -eq 1 ] && echo "archive is corrupted (invalid hash), skipping" && rm vcrun2017.tar.zst && return
     extract vcrun2017.tar.zst
     cp -r "$PWD"/vcrun2017/drive_c/windows/* "$WINEPREFIX/drive_c/windows/"
     import_dlls "$PWD"/vcrun2017/vcrun2017.reg
@@ -130,7 +130,7 @@ vcrun2019()
     echo "downloading vcrun2019"
     download https://github.com/john-cena-141/chadtricks/raw/main/vcrun2019.tar.zst
     check vcrun2019.tar.zst 4368f81681d98a77e3dfba4b381213f0a717d03c29f874a693581bd1cc8734f3
-    [ $? -eq 1 ] && echo "archive is corrupted (invalid hash), skipping" && return
+    [ $? -eq 1 ] && echo "archive is corrupted (invalid hash), skipping" && rm vcrun2019.tar.zst && return
     extract vcrun2019.tar.zst
     cp -r "$PWD"/vcrun2019/drive_c/windows/* "$WINEPREFIX/drive_c/windows/"
     import_dlls "$PWD"/vcrun2019/vcrun2019.reg
@@ -144,7 +144,7 @@ mf()
     echo "downloading mf"
     download "https://github.com/john-cena-141/chadtricks/raw/main/mf.tar.zst"
     check mf.tar.zst e61b9a8e062d585adb2dd840df3e65b099dd19085bcf0058d5d50318ddf9ce80
-    [ $? -eq 1 ] && echo "archive is corrupted (invalid hash), skipping" && return
+    [ $? -eq 1 ] && echo "archive is corrupted (invalid hash), skipping" && rm mf.tar.zst && return
     extract "mf.tar.zst"
     cp -r "$PWD"/mf/drive_c/windows/* "$WINEPREFIX/drive_c/windows/"
     import_dlls "$PWD"/mf/mf.reg
@@ -159,7 +159,7 @@ template()
     #echo "downloading template"
     #download https://github.com/john-cena-141/chadtricks/raw/main/template.tar.zst
     #check template.tar.zst 2bcf9852b02f6e707905f0be0a96542225814a3fc19b3b9dcf066f4dd2781337
-    #[ $? -eq 1 ] && echo "archive is corrupted (invalid hash), skipping" && return
+    #[ $? -eq 1 ] && echo "archive is corrupted (invalid hash), skipping" && rm template.tar.zst && return
     #extract template.tar.zst
     #cp -r "$PWD"/template/drive_c/windows/* "$WINEPREFIX/drive_c/windows/"
     #import_dlls "$PWD"/template/template.reg
