@@ -130,6 +130,7 @@ vcrun2019()
     echo "downloading vcrun2019"
     download https://github.com/john-cena-141/chadtricks/raw/main/vcrun2019.tar.zst
     check vcrun2019.tar.zst 4368f81681d98a77e3dfba4b381213f0a717d03c29f874a693581bd1cc8734f3
+    [ $? -eq 1 ] && echo "archive is corrupted (invalid hash), skipping" && return
     extract vcrun2019.tar.zst
     cp -r "$PWD"/vcrun2019/drive_c/windows/* "$WINEPREFIX/drive_c/windows/"
     import_dlls "$PWD"/vcrun2019/vcrun2019.reg
