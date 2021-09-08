@@ -57,7 +57,8 @@ update-self()
 {
     echo "updating chadtricks"
     download https://raw.githubusercontent.com/john-cena-141/chadtricks/main/chadtricks.sh
-    mv "$PWD/chadtricks.sh" "$(realpath "$0")"
+    chmod +x "$PWD/chadtricks.sh"
+    [ "$PWD/chadtricks.sh" != "$(realpath "$0")" ] && mv "$PWD/chadtricks.sh" "$(realpath "$0")"
     echo "done"
 }
 
