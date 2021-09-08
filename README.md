@@ -6,6 +6,7 @@ Made by johncena141 group on 1337x.to
 
 ## List of commands
 
+- update-self
 - mf
 - vcrun2010
 - vcrun2012

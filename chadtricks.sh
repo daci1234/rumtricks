@@ -53,6 +53,14 @@ register_dll()
     done
 }
 
+update-self()
+{
+    echo "updating chadtricks"
+    download https://raw.githubusercontent.com/john-cena-141/chadtricks/main/chadtricks.sh
+    mv "$PWD/chadtricks.sh" "$(realpath "$0")"
+    echo "done"
+}
+
 vcrun2010()
 {
     update
