@@ -15,6 +15,9 @@
 export WINEDLLOVERRIDES="mscoree=d;mshtml=d"
 export WINEDEBUG="-all"
 
+# All operations are relative to chadtricks' location
+cd "$(dirname "$(realpath "$0")")" || exit 1
+
 # Download path (default)
 echo "download path is $PWD"
 
