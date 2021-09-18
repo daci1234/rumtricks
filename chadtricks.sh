@@ -70,7 +70,7 @@ vcrun2010()
     update
     echo "downloading vcrun2010"
     [ ! -f "vcrun2010.tar.zst" ] && download https://github.com/john-cena-141/chadtricks/raw/main/vcrun2010.tar.zst
-    check vcrun2010.tar.zst f4ca1c716fd4f33426d0074c2c21561893a61d253a45a41dff53f6c638acd151
+    check vcrun2010.tar.zst bb58b714c95373f4ad2d3757d27658c6ce37de5fa4cbc85c16e5ca01178fb883
     [ $? -eq 1 ] && echo "archive is corrupted (invalid hash), skipping" && rm vcrun2010.tar.zst && return
     extract vcrun2010.tar.zst
     cp -r "$PWD"/vcrun2010/files/drive_c/windows/* "$WINEPREFIX/drive_c/windows/"
