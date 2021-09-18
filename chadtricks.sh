@@ -100,7 +100,7 @@ vcrun2013()
     update
     echo "downloading vcrun2013"
     [ ! -f "vcrun2013.tar.zst" ] && download https://github.com/john-cena-141/chadtricks/raw/main/vcrun2013.tar.zst
-    check vcrun2013.tar.zst 3669fd43ae62a31c4a608b011af7ba97b2f25e25915f7e66d441b46e9d55a39c
+    check vcrun2013.tar.zst b9c990f6440e31b8b53ad80e1f1b524a4accadea2bdcfa7f2bddb36c40632610
     [ $? -eq 1 ] && echo "archive is corrupted (invalid hash), skipping" && rm vcrun2013.tar.zst && return
     extract vcrun2013.tar.zst
     cp -r "$PWD"/vcrun2013/files/drive_c/windows/* "$WINEPREFIX/drive_c/windows/"
