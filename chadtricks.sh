@@ -65,6 +65,21 @@ update-self()
     echo "done"
 }
 
+directx()
+{
+    update
+    echo "downloading directx"
+    [ ! -f "directx.tar.zst" ] && download https://github.com/john-cena-141/chadtricks/raw/main/directx.tar.zst
+    check directx.tar.zst 22ef60f2e9700aecbb0303019d8310445796d3b52b2244870e9f47fba17953ab
+    [ $? -eq 1 ] && echo "archive is corrupted (invalid hash), skipping" && rm directx.tar.zst && return
+    extract directx.tar.zst
+    cp -r "$PWD"/directx/files/drive_c/windows/* "$WINEPREFIX/drive_c/windows/"
+    import_dlls "$PWD"/directx/directx.reg
+    echo "directx" >> "$WINEPREFIX/chadtricks.log"
+    rm -rf "$PWD"/directx
+    echo "directx installed"
+}
+
 vcrun2010()
 {
     update
