@@ -21,6 +21,16 @@ cd "$(dirname "$(realpath "$0")")" || exit 1
 # Download path (default)
 echo "download path is $PWD"
 
+# Support custom Wine versions
+[ -z "$WINE" ] && WINE="$(command -v wine)"
+[ ! -x "$WINE" ] && echo "${WINE} is not an executable, exiting" && exit 1
+
+[ -z "$WINE64" ] && WINE64="${WINE}64"
+[ ! -x "$WINE64" ] && echo "${WINE64} is not an executable, exiting" && exit 1
+
+[ -z "$WINESERVER" ] && WINESERVER="${WINE}server"
+[ ! -x "$WINESERVER" ] && echo "${WINESERVER} is not an executable, exiting" && exit 1
+
 download()
 {
     command -v aria2c >/dev/null 2>&1 && aria2c "$1" && return
@@ -30,7 +40,7 @@ download()
 
 import_dlls()
 {
-    echo "importing dlls" && wine regedit "$1" && wine64 regedit "$1" && wineserver -w
+    echo "importing dlls" && "$WINE" regedit "$1" && "$WINE64" regedit "$1" && "$WINESERVER" -w
 }
 
 extract()
@@ -40,7 +50,7 @@ extract()
 
 update()
 {
-    echo "updating prefix" && wineboot -u && wineserver -w
+    echo "updating prefix" && "$WINE" wineboot.exe -u && "$WINESERVER" -w
 }
 
 check()
@@ -52,7 +62,7 @@ register_dll()
 {
     for i in "$@"
     do
-    wine regsvr32 "$i" && wine64 regsvr32 "$i"
+    "$WINE" regsvr32 "$i" && "$WINE64" regsvr32 "$i"
     done
 }
 
