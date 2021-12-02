@@ -82,7 +82,7 @@ isolate()
     _oldpwd="$(pwd)"
     for entry in *
     do
-        if [ -L "$entry" && -d "$entry" ]
+        if [ -L "$entry" ] && [ -d "$entry" ]
         then
             rm -f "$entry"
             mkdir -p "$entry"
