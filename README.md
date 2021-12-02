@@ -2,6 +2,7 @@
 
 - update-self
 - directx
+- isolate
 - mf
 - vcrun2010
 - vcrun2012

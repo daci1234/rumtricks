@@ -75,6 +75,23 @@ update-self()
     echo "done"
 }
 
+isolate()
+{
+    echo "disabling desktop integrations"
+    cd "$WINEPREFIX/drive_c/users/${USER}"
+    _oldpwd="$(pwd)"
+    for entry in *
+    do
+        if [ -L "$entry" && -d "$entry" ]
+        then
+            rm -f "$entry"
+            mkdir -p "$entry"
+        fi
+    done
+    cd "$_oldpwd"
+    echo "done"
+}
+
 directx()
 {
     update
