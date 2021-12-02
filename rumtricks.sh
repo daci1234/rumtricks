@@ -79,7 +79,6 @@ isolate()
 {
     echo "disabling desktop integrations"
     cd "$WINEPREFIX/drive_c/users/${USER}"
-    _oldpwd="$(pwd)"
     for entry in *
     do
         if [ -L "$entry" ] && [ -d "$entry" ]
@@ -88,7 +87,7 @@ isolate()
             mkdir -p "$entry"
         fi
     done
-    cd "$_oldpwd"
+    cd "$OLDPWD"
     echo "done"
 }
 
