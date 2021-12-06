@@ -88,6 +88,7 @@ isolate()
         fi
     done
     cd "$OLDPWD"
+    echo "isolate" >> "$WINEPREFIX/rumtricks.log"
     echo "done"
 }
 
