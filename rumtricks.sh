@@ -8,6 +8,9 @@
 # Forbid root rights
 [ "$EUID" = "0" ] && echo -e "\e[91mDon't use sudo or root user to execute rumtricks!\e[0m" && exit
 
+# Base download URL for the archive
+BASE_URL="https://github.com/goldenboy313/rumtricks/raw/main"
+
 # Use default prefix if nothing is exported
 [ -z "$WINEPREFIX" ] && export WINEPREFIX="$HOME/.wine"
 
@@ -69,7 +72,7 @@ register_dll()
 update-self()
 {
     echo "updating rumtricks"
-    download https://raw.githubusercontent.com/john-cena-141/rumtricks/main/rumtricks.sh
+    download "$BASE_URL/rumtricks.sh"
     chmod +x "$PWD/rumtricks.sh"
     [ "$PWD/rumtricks.sh" != "$(realpath "$0")" ] && mv "$PWD/rumtricks.sh" "$(realpath "$0")"
     echo "done"
@@ -96,7 +99,7 @@ directx()
 {
     update
     echo "downloading directx"
-    [ ! -f "directx.tar.zst" ] && download https://github.com/john-cena-141/rumtricks/raw/main/directx.tar.zst
+    [ ! -f "directx.tar.zst" ] && download "$BASE_URL/directx.tar.zst"
     check directx.tar.zst 22ef60f2e9700aecbb0303019d8310445796d3b52b2244870e9f47fba17953ab
     [ $? -eq 1 ] && echo "archive is corrupted (invalid hash), skipping" && rm directx.tar.zst && return
     extract directx.tar.zst
@@ -111,7 +114,7 @@ vcrun2010()
 {
     update
     echo "downloading vcrun2010"
-    [ ! -f "vcrun2010.tar.zst" ] && download https://github.com/john-cena-141/rumtricks/raw/main/vcrun2010.tar.zst
+    [ ! -f "vcrun2010.tar.zst" ] && download "$BASE_URL/vcrun2010.tar.zst"
     check vcrun2010.tar.zst bb58b714c95373f4ad2d3757d27658c6ce37de5fa4cbc85c16e5ca01178fb883
     [ $? -eq 1 ] && echo "archive is corrupted (invalid hash), skipping" && rm vcrun2010.tar.zst && return
     extract vcrun2010.tar.zst
@@ -126,7 +129,7 @@ vcrun2012()
 {
     update
     echo "downloading vcrun2012"
-    [ ! -f "vcrun2012.tar.zst" ] && download https://github.com/john-cena-141/rumtricks/raw/main/vcrun2012.tar.zst
+    [ ! -f "vcrun2012.tar.zst" ] && download "$BASE_URL/vcrun2012.tar.zst"
     check vcrun2012.tar.zst 6ff3e8896d645c76ec8ef9a7fee613aea0a6b06fad04a35ca8a1fb7a4a314ce6
     [ $? -eq 1 ] && echo "archive is corrupted (invalid hash), skipping" && rm vcrun2012.tar.zst && return
     extract vcrun2012.tar.zst
@@ -141,7 +144,7 @@ vcrun2013()
 {
     update
     echo "downloading vcrun2013"
-    [ ! -f "vcrun2013.tar.zst" ] && download https://github.com/john-cena-141/rumtricks/raw/main/vcrun2013.tar.zst
+    [ ! -f "vcrun2013.tar.zst" ] && download "$BASE_URL/vcrun2013.tar.zst"
     check vcrun2013.tar.zst b9c990f6440e31b8b53ad80e1f1b524a4accadea2bdcfa7f2bddb36c40632610
     [ $? -eq 1 ] && echo "archive is corrupted (invalid hash), skipping" && rm vcrun2013.tar.zst && return
     extract vcrun2013.tar.zst
@@ -156,7 +159,7 @@ vcrun2015()
 {
     update
     echo "downloading vcrun2015"
-    [ ! -f "vcrun2015.tar.zst" ] && download "https://github.com/john-cena-141/rumtricks/raw/main/vcrun2015.tar.zst"
+    [ ! -f "vcrun2015.tar.zst" ] && download "$BASE_URL/vcrun2015.tar.zst"
     check vcrun2015.tar.zst 2b0bc92d4bd2a48f7e4d0a958d663baa5f3165eab95521e71f812b9030b03eb6
     [ $? -eq 1 ] && echo "archive is corrupted (invalid hash), skipping" && rm vcrun2015.tar.zst && return
     extract "vcrun2015.tar.zst"
@@ -171,7 +174,7 @@ vcrun2017()
 {
     update
     echo "downloading vcrun2017"
-    [ ! -f "vcrun2017.tar.zst" ] && download https://github.com/john-cena-141/rumtricks/raw/main/vcrun2017.tar.zst
+    [ ! -f "vcrun2017.tar.zst" ] && download "$BASE_URL/vcrun2017.tar.zst"
     check vcrun2017.tar.zst 2bcf9852b02f6e707905f0be0a96542225814a3fc19b3b9dcf066f4dd2789773
     [ $? -eq 1 ] && echo "archive is corrupted (invalid hash), skipping" && rm vcrun2017.tar.zst && return
     extract vcrun2017.tar.zst
@@ -186,7 +189,7 @@ vcrun2019()
 {
     update
     echo "downloading vcrun2019"
-    [ ! -f "vcrun2019.tar.zst" ] && download https://github.com/john-cena-141/rumtricks/raw/main/vcrun2019.tar.zst
+    [ ! -f "vcrun2019.tar.zst" ] && download "$BASE_URL/vcrun2019.tar.zst"
     check vcrun2019.tar.zst f84542198789d35db77ba4bc73990a2122d97546db5aca635b3058fc1830961d
     [ $? -eq 1 ] && echo "archive is corrupted (invalid hash), skipping" && rm vcrun2019.tar.zst && return
     extract vcrun2019.tar.zst
@@ -201,7 +204,7 @@ mf()
 {
     update
     echo "downloading mf"
-    [ ! -f "mf.tar.zst" ] && download "https://github.com/john-cena-141/rumtricks/raw/main/mf.tar.zst"
+    [ ! -f "mf.tar.zst" ] && download "$BASE_URL/mf.tar.zst"
     check mf.tar.zst e61b9a8e062d585adb2dd840df3e65b099dd19085bcf0058d5d50318ddf9ce80
     [ $? -eq 1 ] && echo "archive is corrupted (invalid hash), skipping" && rm mf.tar.zst && return
     extract "mf.tar.zst"
@@ -217,7 +220,7 @@ template()
 {
     #update
     #echo "downloading template"
-    #[ ! -f "template.tar.zst"] && download https://github.com/john-cena-141/rumtricks/raw/main/template.tar.zst
+    #[ ! -f "template.tar.zst"] && download "$BASE_URL/template.tar.zst"
     #check template.tar.zst 2bcf9852b02f6e707905f0be0a96542225814a3fc19b3b9dcf066f4dd2781337
     #[ $? -eq 1 ] && echo "archive is corrupted (invalid hash), skipping" && rm template.tar.zst && return
     #extract template.tar.zst
