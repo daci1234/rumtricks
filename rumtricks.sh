@@ -80,6 +80,7 @@ update-self()
 
 isolate()
 {
+	update
     echo "disabling desktop integrations"
     cd "$WINEPREFIX/drive_c/users/${USER}"
     for entry in *
